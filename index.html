@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our First 365 Days</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .screen {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .vault-content {
+            display: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+        }
+        .light-bg {
+            background-color: #ffffff;
+            color: #111111;
+        }
+        
+        /* KOLOROWE MOTYWY DLA MOMENTÓW */
+        .theme-cs {
+            background-color: #12131a;
+            color: #f0f1f5;
+        }
+        .theme-cs .btn {
+            background-color: #4a5768 !important;
+            color: #fff !important;
+        }
+        
+        .theme-romantic {
+            background-color: #fff5f6;
+            color: #2b181c;
+        }
+        .theme-romantic h2 { color: #d16b7b; }
+        
+        .theme-truth {
+            background-color: #ffffff;
+            color: #111111;
+        }
+        .theme-truth h2 { color: #333; }
+        .theme-truth .btn { background-color: #111 !important; color: #fff !important; }
+        
+        .theme-storm {
+            background-color: #160d1a;
+            color: #f1e6f5;
+        }
+        .theme-storm h2 {
+            color: #b185db !important;
+            text-shadow: 0 0 8px rgba(177, 133, 219, 0.4);
+        }
+        .theme-storm .btn {
+            background-color: #7b2cbf !important;
+            color: #fff !important;
+        }
+
+        .dark-joke-bg {
+            background-color: #050002;
+            color: #ff4d6d;
+        }
+        .dark-joke-bg h2 {
+            color: #9d4edd !important;
+            text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+        }
+        .dark-joke-bg .btn {
+            background-color: #9d4edd !important;
+            color: #fff !important;
+        }
+
+        h1, h2, h3 {
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        h2 { color: #d16b7b; }
+        p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+        .quote-box {
+            font-style: italic;
+            background: rgba(0,0,0,0.03);
+            border-left: 3px solid #d16b7b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .theme-storm .quote-box {
+            background: rgba(255,255,255,0.05);
+            border-left-color: #b185db;
+        }
+        input {
+            padding: 12px;
+            font-size: 18px;
+            text-align: center;
+            border: 1px solid #333;
+            background: #111;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 4px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            font-size: 16px;
+            background-color: #ffb6c1;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            margin-top: 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .text-left { text-align: left; }
+        .grid-reasons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 25px; }
+        .reason-card { background: #fbfbfb; border: 1px solid #ffb6c1; border-radius: 6px; padding: 15px; color: #111111; font-size: 0.95rem; text-align: left; line-height: 1.4; }
+
+        /* ANIMACJE KIERUNKOWE */
+        .anim-fade { animation: fadeIn 1.2s ease forwards; }
+        .anim-left { animation: slideLeft 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+        .anim-right { animation: slideRight 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+        .anim-diagonal { animation: slideDiagonal 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideLeft { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideRight { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideDiagonal { from { transform: translate(50px, 50px); opacity: 0; } to { transform: translate(0, 0); opacity: 1; } }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.2); opacity: 1; } }
+        @keyframes devilPulse { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.15); opacity: 0.6; color: #ff003c; } }
+
+        @media (max-width: 600px) { .grid-reasons { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- SCREEN 1: START -->
+    <div id="start" class="screen anim-fade">
+        <div class="container">
+            <h1 style="font-size: 1.6rem; margin-bottom: 30px;">If you are ready, click the button below</h1>
+            <button class="btn" onclick="goToPassword()">ENTER</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: HASŁO MAPA -->
+    <div id="screen2" class="screen" style="display: none;">
+        <div class="container">
+            <p>Unlock the memory vault.</p>
+            <h3 style="font-weight: 400; color: #aaa;">What was the first map we played our first match on in CS?</h3>
+            <input type="text" id="passwordInput" placeholder="Type map & press ENTER..." autocomplete="off">
+            <p id="errorMsg" style="color: #ff4d4d; font-size: 14px; display: none; margin-top: 15px;">That's not the map... Think again, my little Dori! 🎮</p>
+        </div>
+    </div>
+
+    <div id="vault" class="vault-content">
+
+        <!-- SCREEN 3: WELCOME -->
+        <div id="welcome" class="screen theme-romantic anim-diagonal">
+            <div class="container">
+                <h2>Cześć, księżniczko.</h2>
+                <p>Ten rok był dla nas na pewno ciężki. Dużo pięknych, trudnych i śmiesznych momentów.</p>
+                <p>365 dni to naprawdę dużo.</p>
+                <p>Ja pamiętam bardzo wiele z nich, a wiem, że Ty jesteś Dori, więc chciałbym Ci trochę przypomnieć...</p>
+                <a href="#moment1" class="btn">Start the journey</a>
+            </div>
+        </div>
+        <!-- MOMENT 1 (CS THEME) -->
+        <div id="moment1" class="screen theme-cs anim-left">
+            <div class="container">
+                <span style="color:#ffb6c1; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #1</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">October 10, 2025</h4>
+                <h2>The Day We Met 🎮</h2>
+                <p class="text-left">This is where it all truly began. A simple, random match in CS connected our worlds. Back then, neither of us could have known that a casual game would lead to a love lasting a whole year. We started playing every single day, and just a few days later, our late-night conversations moved to Instagram. We built our first core memory right here.</p>
+                <a href="#moment2" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 2 (CS THEME) -->
+        <div id="moment2" class="screen theme-cs anim-right">
+            <div class="container">
+                <span style="color:#ffb6c1; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #2</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">October 22, 2025</h4>
+                <h2>Moving to Instagram 📱</h2>
+                <p class="text-left">After our first matches, something shifted. It became about more than just the game. On October 22, we moved our chat from Steam to Instagram, and from that very second, the real story of us began. It was the birth of a beautiful archive we would both look back on for months to come.</p>
+                <a href="#moment3" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 3 (ROMANTIC THEME) -->
+        <div id="moment3" class="screen theme-romantic anim-fade">
+            <div class="container">
+                <span style="color:#d16b7b; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #3</span>
+                <h4 style="color:#555; font-weight: 300; margin: 5px 0 15px 0;">November 5, 2025</h4>
+                <h2>Becoming Ours ❤️</h2>
+                <p class="text-left">The moment where what started as matches and endless chats turned into a real relationship. Just a few weeks after that first Instagram message, we belonged to each other. Even now, we still look back and marvel at how quickly our hearts made the choice.</p>
+                <a href="#moment4" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 4 (ROMANTIC THEME) -->
+        <div id="moment4" class="screen theme-romantic anim-left">
+            <div class="container">
+                <span style="color:#d16b7b; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #4</span>
+                <h4 style="color:#555; font-weight: 300; margin: 5px 0 15px 0;">November 18, 2025</h4>
+                <h2>The First 'I Love You' 💗</h2>
+                <p class="text-left">A date forever burned into my mind, one that needs no searching for in memory. On November 18, those three beautiful words were spoken between us for the first time. Whenever we look back at the beginning of our chat, this is the exact day everything changed forever.</p>
+                <a href="#moment5" class="btn">Next →</a>
+            </div>
+        </div>
+        <!-- MOMENT 5 (CS THEME) -->
+        <div id="moment5" class="screen theme-cs anim-right">
+            <div class="container">
+                <span style="color:#ffb6c1; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #5</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">November 20, 2025</h4>
+                <h2>When CS Became Ours 🎮</h2>
+                <p class="text-left">Just two days later, we were already joking that 'we would break up over a game one day.' You wrote back then that the game was the only place where you could always hear my voice, even if it would exhaust us. It was the start of CS becoming the background music to our love story.</p>
+                <a href="#moment6" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 6 (ROMANTIC THEME) -->
+        <div id="moment6" class="screen theme-romantic anim-fade">
+            <div class="container">
+                <span style="color:#d16b7b; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #6</span>
+                <h4 style="color:#555; font-weight: 300; margin: 5px 0 15px 0;">December 21, 2025</h4>
+                <h2>Your Beautiful Dream 🌌</h2>
+                <p class="text-left">One of the most romantic moments of our entire year. You woke up and told me about a dream where we were truly together in the real world—holding hands, kissing, while I handed you flowers and asked you to be my girl. We both started crying in that dream, and the sheer emotion woke you up.</p>
+                <a href="#moment7" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 7 (ROMANTIC THEME) -->
+        <div id="moment7" class="screen theme-romantic anim-diagonal">
+            <div class="container">
+                <span style="color:#d16b7b; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #7</span>
+                <h4 style="color:#555; font-weight: 300; margin: 5px 0 15px 0;">January 2026</h4>
+                <h2>Our Beautiful Little Rituals ✨</h2>
+                <p class="text-left">Our conversations became a rhythm, a refuge. The morning messages, the soft 'good morning' and 'good night' texts, our code words like 'bby' and 'janym', and those endless nights where we refused to go to sleep just to stay together a little longer. We found our own pace.</p>
+                <a href="#moment8" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 8 (TRUTH THEME) -->
+        <div id="moment8" class="screen theme-truth anim-left">
+            <div class="container">
+                <span style="color:#333; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #8</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">February 5, 2026</h4>
+                <h2>The First Real Storm 🥺</h2>
+                <p class="text-left">The first time the terrifying fear crept in that we might actually lose each other. We both remember how painfully heavy those days felt. But even through the anger and the distance, I wrote to you that my heart never stopped loving you, not even for a single second.</p>
+                <a href="#moment9" class="btn">Next →</a>
+            </div>
+        </div>
+        <!-- MOMENT 9 (TRUTH THEME) -->
+        <div id="moment9" class="screen theme-truth anim-diagonal">
+            <div class="container">
+                <span style="color:#333; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #9</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">February 8, 2026</h4>
+                <h2>Choosing to Fight For Us 🩸</h2>
+                <p class="text-left">A few days after the storm, we spoke about what happened. You admitted you were completely 'on the edge', and I asked if you appreciated how hard I fought to prevent our world from falling apart. You said yes. That was the moment we proved that we would always choose to fight rather than give up.</p>
+                <a href="#moment10" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 10 (STORM THEME) -->
+        <div id="moment10" class="screen theme-storm anim-fade">
+            <div class="container">
+                <span style="color:#b185db; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #10</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">February 2026</h4>
+                <h2>Serials & Safe Havens 🎬</h2>
+                <p class="text-left">Our evenings started meaning more than just CS. We found new worlds to share, and Game of Thrones became a signature part of our relationship. We developed our own inside jokes, shared dreams, and endless late-night discussions around it. It became our favorite escape.</p>
+                <a href="#moment11" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 11 (ROMANTIC THEME) -->
+        <div id="moment11" class="screen theme-romantic anim-left">
+            <div class="container">
+                <span style="color:#d16b7b; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #11</span>
+                <h4 style="color:#555; font-weight: 300; margin: 5px 0 15px 0;">February 18, 2026</h4>
+                <h2>'Chcesz żeby ja z tobą poleżała?' 🧸</h2>
+                <p class="text-left">It might seem like a small detail to the rest of the world, but to me, it is everything. You asked me so simply: 'Хочешь żeby ja s toboy poleżała?'. No grand declarations. Just a pure desire to be close to me. In those quiet moments, a 4,500 km distance felt like nothing at all.</p>
+                <a href="#moment12" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 12 (TRUTH THEME) -->
+        <div id="moment12" class="screen theme-truth anim-right">
+            <div class="container">
+                <span style="color:#333; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #12</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">June 5, 2026</h4>
+                <h2>The Day of Truth 🛡️</h2>
+                <p class="text-left">The absolute turning point of our year. The day you bravely opened up and told me the full truth about your life—your real age, your children, your husband, your job, and the reasons behind your sudden absences. It was a moment where anyone else might have walked away. But I looked at you, and I only saw the woman I loved.</p>
+                <a href="#moment13" class="btn">Next →</a>
+            </div>
+        </div>
+        <!-- MOMENT 13 (TRUTH THEME) -->
+        <div id="moment13" class="screen theme-truth anim-diagonal">
+            <div class="container">
+                <span style="color:#333; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #13</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">June 5, 2026</h4>
+                <h2>'I Choose You, Always' 💍</h2>
+                <p class="text-left">A separate moment, because choosing you after the truth was a profound choice of my soul. I wrote to you that I still wanted to be with you, to spend the most beautiful moments of my life by your side, until the very end. You were shocked that I didn't push you away, and I told you:</p>
+                <div class="quote-box">"You were right, when I know the truth everything will change... it has changed, I love you even more..."</div>
+                <a href="#moment14" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 14 (STORM THEME) -->
+        <div id="moment14" class="screen theme-storm anim-fade">
+            <div class="container">
+                <span style="color:#b185db; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #14</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">June 27, 2026</h4>
+                <h2>The Shadow of Arunid 🌩️</h2>
+                <p class="text-left">A storm born from deep jealousy and protective instincts. The heavy emotions surrounding Arunid shook us, leading to a silence that cut deep. We would look back on this day many times, remembering how a brutal wave of jealousy could block our worlds, leaving a lingering memory in our archive.</p>
+                <a href="#moment15" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 15 (STORM THEME) -->
+        <div id="moment15" class="screen theme-storm anim-left">
+            <div class="container">
+                <span style="color:#b185db; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #15</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">Summer 2026</h4>
+                <h2>The Block That Hurt Us Both 💔</h2>
+                <p class="text-left">A clash that went far beyond a game. You told me later that when you blocked me, you cried yourself to sleep, terrified that I was secretly writing to someone else on a second account. Meanwhile, I spent the entire night like a madman, trying to reach you through every application possible. We were both paralyzed by the fear of losing everything.</p>
+                <a href="#moment16" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 16 (TRUTH THEME) -->
+        <div id="moment16" class="screen theme-truth anim-right">
+            <div class="container">
+                <span style="color:#333; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #16</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">Summer 2026</h4>
+                <h2>We Refuse to Surrender ❤️‍🩹</h2>
+                <p class="text-left">Looking back at the storms we survived, I told you that the one thing I am truly proud of is that I never gave up on us. You confessed that this was your exact fear—you didn't want me to hold onto hope and suffer. We walked on the absolute edge of the end so many times, yet we always found our way back home.</p>
+                <a href="#moment17" class="btn">Next →</a>
+            </div>
+        </div>
+        <!-- MOMENT 17 (TRUTH THEME) -->
+        <div id="moment17" class="screen theme-truth anim-diagonal">
+            <div class="container">
+                <span style="color:#333; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #17</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">August 2026</h4>
+                <h2>My Dream of Our Real Meeting 🚗</h2>
+                <p class="text-left">My midnight sanctuary—the vivid dreams where the distance finally drops to zero. In one specific dream, we were driving through the night, a quiet restaurant reserved just for us, walking side by side in the dark as I handed you flowers. I woke up, and for 40 minutes, I just lay in the quiet room, missing you with every beat of my heart.</p>
+                <a href="#moment18" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 18 (CS THEME) -->
+        <div id="moment18" class="screen theme-cs anim-left">
+            <div class="container">
+                <span style="color:#ffb6c1; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #18</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">September 2026</h4>
+                <h2>When CS Became 'Ours' 2.0 🎮</h2>
+                <p class="text-left">Over time, the game completely lost its original meaning. You beautifully confessed that you didn't care about the elo anymore, you just didn't want to play a single match without me. And I told you that losing thousands of elo meant absolutely nothing—because there are things in this world infinitely more important than a game. There is you.</p>
+                <a href="#moment19" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 19 (CS THEME) -->
+        <div id="moment19" class="screen theme-cs anim-right">
+            <div class="container">
+                <span style="color:#ffb6c1; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #19</span>
+                <h4 style="color:#888; font-weight: 300; margin: 5px 0 15px 0;">September 2026</h4>
+                <h2>'I Would Rather Talk To You' 💬</h2>
+                <p class="text-left">Long before we became what we are now, I told you a profound truth: if I had to choose between playing all day or just talking to you, I would choose writing to you without a single doubt. To me, CS was always just an excuse, a little addition... the true goal from the very first second was always you.</p>
+                <a href="#moment20" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MOMENT 20 (ROMANTIC THEME) -->
+        <div id="moment20" class="screen theme-romantic anim-fade">
+            <div class="container">
+                <span style="color:#d16b7b; font-size:0.9rem; letter-spacing:1px; font-weight: bold;">MEMORY #20</span>
+                <h4 style="color:#555; font-weight: 300; margin: 5px 0 15px 0;">October 2026</h4>
+                <h2>After Everything... There is Still Us 💗</h2>
+                <p class="text-left">After 365 days, through every distance, every brutal argument, the jealousy, the hidden truths, the blocks, and the paralyzing fear of the end... we survived. Here we are, still sitting together, talking, watching our shows, playing our matches, laughing at our jokes, and saying 'I love you'. After everything... we are still beautifully us.</p>
+                <a href="#reasons" class="btn">Next →</a>
+            </div>
+        </div>
+        <!-- SCREEN 20 REASONS -->
+        <div id="reasons" class="screen theme-romantic anim-diagonal">
+            <div class="container">
+                <h2>Dobrze...<br><span style="font-size: 1.2rem; color: #555; font-weight: 300;">teraz coś trochę bardziej osobistego.</span></h2>
+                <h3 style="font-weight: 400; margin-bottom: 20px;">20 Things I love about you.</h3>
+                
+                <div class="grid-reasons">
+                    <div class="reason-card"><b>1.</b> For the way you laugh and troll me when we play CS together.</div>
+                    <div class="reason-card"><b>2.</b> Because you are an incredibly wise, clever, and intelligent woman.</div>
+                    <div class="reason-card"><b>3.</b> For your huge heart that carries so many daily duties for our children.</div>
+                    <div class="reason-card"><b>4.</b> For your cute nickname 'Dori' and how I love reminding you how much you mean to me when you forget.</div>
+                    <div class="reason-card"><b>5.</b> Because you are my 'Strong Mommy' whom I admire and respect every single day.</div>
+                    <div class="reason-card"><b>6.</b> For all the funny emojis and reels with Peppa Pig and Patrick from Spongebob you send me.</div>
+                    <div class="reason-card"><b>7.</b> For the soothing sound of your voice on Discord that instantly brings peace to my world.</div>
+                    <div class="reason-card"><b>8.</b> Because even when you get toxic, stubborn, or beautifully jealous, it just shows me how much you care.</div>
+                    <div class="reason-card"><b>9.</b> Because you look absolutely phenomenal in blue.</div>
+                    <div class="reason-card"><b>10.</b> Because the very first 'Good morning' message from you makes my whole world bright.</div>
+                    <div class="reason-card"><b>11.</b> For the beautiful, gentle way your lips look when you are thinking deeply.</div>
+                    <div class="reason-card"><b>12.</b> Because you trust me completely with your deepest secrets and vulnerable truths.</div>
+                    <div class="reason-card"><b>13.</b> For the profound warmth I feel in my heart every single time you speak to me in Polish.</div>
+                    <div class="reason-card"><b>14.</b> Because you hold my whole soul in your hands, completely ignoring the 4,500 kilometers between us.</div>
+                    <div class="reason-card"><b>15.</b> For the way you genuinely look out for my health and worry if I rest enough.</div>
+                    <div class="reason-card"><b>16.</b> Because despite all our storms, you chose to stay, fight, and build a future alongside me.</div>
+                    <div class="reason-card"><b>17.</b> For your soft and incredibly cute voice when you wake up in the morning.</div>
+                    <div class="reason-card"><b>18.</b> Because you are my queen, and you make me want to be the absolute best knight for you.</div>
+                    <div class="reason-card"><b>19.</b> For the unmatched sense of comfort and safety I find only when I am talking to you.</div>
+                    <div class="reason-card"><b>20.</b> Because out of all the lives and people in this world, your beautiful heart picked me.</div>
+                </div>
+
+                <a href="#joke" class="btn">Next →</a>
+            </div>
+        </div>
+
+        <!-- MROCZNY EKRAN ŻARTU (Czarno-czerwono-fioletowy motyw z demonami) -->
+        <div id="joke" class="screen dark-joke-bg anim-fade">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.2; font-size: 2.5rem;">
+                <span style="position: absolute; top: 15%; left: 10%; animation: devilPulse 2.5s infinite alternate;">😈</span>
+                <span style="position: absolute; top: 70%; left: 20%; animation: devilPulse 2s infinite alternate;">👹</span>
+                <span style="position: absolute; top: 35%; left: 85%; animation: devilPulse 2.2s infinite alternate;">😈</span>
+                <span style="position: absolute; top: 80%; left: 75%; animation: devilPulse 2.8s infinite alternate;">👹</span>
+            </div>
+
+            <div class="container" style="position: relative; z-index: 2;">
+                <h2>Alright.<br>It can't be too sweet.</h2>
+                <p style="color: #ff4d6d;">Let's do something completely different now...</p>
+                <h3 style="margin-top: 20px; font-weight: 400; color: #ff003c; text-shadow: 0 0 8px rgba(255,0,60,0.6);">100 things I hate about you.</h3>
+                <a href="#joke-punchline" class="btn">Look through the list 😈</a>
+            </div>
+        </div>
+
+        <!-- SCREEN JOKE PUNCHLINE -->
+        <div id="joke-punchline" class="screen dark-joke-bg anim-left">
+            <div class="container">
+                <h1 style="font-size: 4rem; font-weight: 100; margin-bottom: 20px; color: #ff003c; text-shadow: 0 0 10px rgba(255,0,60,0.4);">100 / 100</h1>
+                <p style="color: #ff4d6d;">I honestly, really tried.</p>
+                <p style="color: #ff4d6d;">I searched through our entire year, every single day, trying to find at least one thing to hold against you.</p>
+                <p style="color: #ff4d6d;">But how could I? You are my princess, my world, and my soul.</p>
+                <p style="color: #ff4d6d;">Those negative things simply do not exist.</p>
+                <a href="#letter" class="btn">Let's go further</a>
+            </div>
+        </div>
+        <!-- SCREEN LETTER -->
+        <div id="letter" class="screen theme-truth anim-fade">
+            <div class="container text-left">
+                <h2 style="text-align: center; margin-bottom: 30px;">Alright. No more jokes.</h2>
+                <p>My Princess,</p>
+                <p>Now, let’s speak from the bottom of my heart, without any jokes. I look back at this year, and I finally truly understand how much weight you carry on your shoulders every day. I see your endless duties, your devotion to our children, and how incredibly strong you have to be. I will admit—at the beginning, it was hard for me to fully grasp it all. I was selfish, and I demanded more of your time because I missed you so intensely.</p>
+                <p>But time taught me to see the world through your eyes. Sometimes I might complain when you come back late, but please know it's never an attack—it's just a boy who is deeply in love, counting every minute until he can feel your presence. When I wake up between 3 and 6 in the morning after just an hour of sleep, or when I stay up working in the garage all night just to rearrange my day around your free moments, I do it with joy. Even when we play CS, it was never just about the game for me. It was simply the only place in the world where 4,500 kilometers disappeared, and I could hear your beautiful voice, listen to you speak Polish, and feel like you were right next to me.</p>
+                <p>Distance is a brutal shadow over us, and I know I have my own deep flaws, moments of insecurity, and times when it hurts. But I am telling you this not to put pressure on you or make you feel guilty. I am telling you this because I want us both to feel safe, loved, and truly important to one another. I love you, bby, more than words can say, and I want to keep fighting for us. You are my world, my queen, and I am always your knight.</p>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#future" class="btn">Our Future</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN FUTURE -->
+        <div id="future" class="screen theme-cs anim-right">
+            <div class="container">
+                <h2>365 days behind us.</h2>
+                <p style="font-size: 1.3rem; margin: 20px 0;">But I don't want this story to end here.</p>
+                <h1 style="font-size: 2.2rem; color: #d16b7b; font-weight: 400; margin: 20px 0;">I want to see another 365 with you.</h1>
+                <p style="color: #ccc;">The countdown is ticking. The moment where 4,500 kilometers will crash down to zero, and I can finally hold you for real. These memories don't exist yet. We haven't built them. But I know that with you, every single step into our future will be worth it.</p>
+                <a href="#final-surprise" class="btn">One last thing...</a>
+            </div>
+        </div>
+
+        <!-- SCREEN SURPRISE -->
+        <div id="final-surprise" class="screen theme-romantic anim-fade">
+            <div class="container">
+                <h2>Did you think it was over?</h2>
+                <a href="#final" class="btn">Click here</a>
+            </div>
+        </div>
+
+        <!-- SCREEN FINAL -->
+        <div id="final" class="screen theme-romantic anim-fade" style="position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.15; font-size: 2rem;">
+                <span style="position: absolute; top: 20%; left: 15%; animation: pulse 2s infinite alternate;">❤️</span>
+                <span style="position: absolute; top: 60%; left: 25%; animation: pulse 2.5s infinite alternate;">💖</span>
+                <span style="position: absolute; top: 40%; left: 80%; animation: pulse 1.8s infinite alternate;">❤️</span>
+                <span style="position: absolute; top: 75%; left: 70%; animation: pulse 2.2s infinite alternate;">💖</span>
+            </div>
+
+            <div class="container" style="position: relative; z-index: 2;">
+                <h1 style="font-size: 2.6rem; color: #d16b7b; font-weight: 300;">Happy 1st Anniversary,<br>my Princess.</h1>
+                <h2 style="font-size: 2.2rem; font-weight: 300; margin-top: 20px; color: #111;">I love you.</h2>
+                
+                <p style="font-size: 1.2rem; color: #d16b7b; margin-top: 30px; font-style: italic; font-weight: 400;">
+                    Happy anniversary to my most gorgeous princess, my hot mommy with a juicy ass... ❤️
+                </p>
+
+                <!-- TU JEST WBUDOWANY AUTOMATYCZNIE TWÓJ GIF Z KOTKIEM -->
+                <div style="margin-top: 35px;">
+                    <img src="https://postimg.cc" 
+                         alt="Our IG Sticker" 
+                         style="max-width: 180px; height: auto; display: inline-block;">
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- VAULT END -->
+
+    <script>
+        function goToPassword() {
+            document.getElementById('start').style.display = 'none';
+            document.getElementById('screen2').style.display = 'flex';
+            document.getElementById('passwordInput').focus();
+        }
+
+        // POTWIERDZENIE HASŁA DOPIERO PO KLIKNIĘCIU KLAWISZA ENTER
+        document.getElementById('passwordInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                if (this.value.toUpperCase() === 'NUKE') {
+                    document.getElementById('errorMsg').style.display = 'none';
+                    document.getElementById('screen2').style.display = 'none';
+                    document.getElementById('vault').style.display = 'block';
+                    window.location.hash = '#welcome';
+                } else {
+                    document.getElementById('errorMsg').style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
