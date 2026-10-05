@@ -157,6 +157,46 @@
         @keyframes slideDiagonal { from { transform: translate(50px, 50px); opacity: 0; } to { transform: translate(0, 0); opacity: 1; } }
         @keyframes pulse { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.2); opacity: 1; } }
         @keyframes devilPulse { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.15); opacity: 0.6; color: #ff003c; } }
+.btn {
+            display: inline-block;
+            padding: 14px 35px;
+            font-size: 16px;
+            background-color: #ffb6c1;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            margin-top: 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .text-left { text-align: left; }
+        .grid-reasons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 25px; }
+        .reason-card { background: #fbfbfb; border: 1px solid #ffb6c1; border-radius: 6px; padding: 15px; color: #111111; font-size: 0.95rem; text-align: left; line-height: 1.4; }
+
+        /* ANIMACJE KIERUNKOWE */
+        .anim-fade { animation: fadeIn 1.2s ease forwards; }
+        .anim-left { animation: slideLeft 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+        .anim-right { animation: slideRight 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+        .anim-diagonal { animation: slideDiagonal 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideLeft { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideRight { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideDiagonal { from { transform: translate(50px, 50px); opacity: 0; } to { transform: translate(0, 0); opacity: 1; } }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.2); opacity: 1; } }
+        @keyframes devilPulse { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.15); opacity: 0.6; color: #ff003c; } }
+        
+        #reasons .container {
+            max-height: 80vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        @media (max-width: 600px) { .grid-reasons { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
 
         @media (max-width: 600px) { .grid-reasons { grid-template-columns: 1fr; } }
     </style>
